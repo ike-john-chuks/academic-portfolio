@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Curriculum Vitae</p>
+    <h1>{{ .Title }}</h1>
+    <a class="cv-download" href="{{ .Site.Params.cvFile | relURL }}" download>Download PDF ↓</a>
+  </header>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  {{ range .Params.sections }}
+  <div class="cv-block">
+    <h2>{{ .heading }}</h2>
+    {{ range .items }}
+    <div class="cv-item">
+      <div class="cv-item__when">{{ .when }}</div>
+      <div class="cv-item__what">
+        <strong>{{ .what }}</strong>
+        {{ with .where }}<span>{{ . }}</span>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Get in touch</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  <div class="prose">{{ .Content }}</div>
+
+  <dl class="contact-grid">
+    {{ with .Site.Params.email }}
+    <div><dt>Email</dt><dd><a href="mailto:{{ . }}">{{ . }}</a></dd></div>
+    {{ end }}
+    {{ with .Site.Params.institution }}
+    <div><dt>Location</dt><dd>{{ . }}</dd></div>
+    {{ end }}
+    {{ with .Site.Params.location }}
+    <div><dt>Location</dt><dd>{{ . }}</dd></div>
+    {{ end }}
+    {{ with .Site.Params.github }}
+    <div><dt>GitHub</dt><dd><a href="{{ . }}">{{ . }}</a></dd></div>
+    {{ end }}
+    {{ with .Site.Params.linkedin }}
+    <div><dt>LinkedIn</dt><dd><a href="{{ . }}">{{ . }}</a></dd></div>
+    {{ end }}
+    {{ with .Site.Params.googleScholar }}
+    <div><dt>Google Scholar</dt><dd><a href="{{ . }}">{{ . }}</a></dd></div>
+    {{ end }}
+    {{ with .Site.Params.orcid }}
+    <div><dt>ORCID</dt><dd><a href="{{ . }}">{{ . }}</a></dd></div>
+    {{ end }}
+  </dl>
+</div>
+{{ end }}

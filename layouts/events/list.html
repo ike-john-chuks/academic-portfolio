@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Talks, coaching &amp; other activity</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+
+  <!-- {{ $pages := .Pages }}
+  {{ if $pages }}
+  <ul class="entry-list">
+    {{ range $pages.Reverse }}
+    <li class="entry">
+      <div class="entry__meta">{{ .Params.date_display | default (.Date.Format "Jan 2006") }}</div>
+      <div>
+        <h2 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Params.location }}<p class="eyebrow" style="margin-bottom:0.4rem;">{{ . }}</p>{{ end }}
+        <p class="entry__summary">{{ .Params.description | default .Summary }}</p>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="empty">No events listed yet — check back soon.</p>
+  {{ end }} -->
+</div>
+{{ end }}

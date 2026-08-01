@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">{{ .Params.year | default (.Date.Format "2006") }}{{ with .Params.status }} &middot; {{ . }}{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.tags }}
+    <div class="entry__tags" style="margin-top:1rem;">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+    {{ end }}
+  </header>
+
+  {{ if or .Params.github .Params.demo .Params.paper }}
+  <div class="container" style="padding-left:0;padding-right:0;margin-bottom:1.5rem;">
+    <div class="entry__links">
+      {{ with .Params.github }}<a href="{{ . }}">Code →</a>{{ end }}
+      {{ with .Params.demo }}<a href="{{ . }}">Live demo →</a>{{ end }}
+      {{ with .Params.paper }}<a href="{{ . }}">Paper →</a>{{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}

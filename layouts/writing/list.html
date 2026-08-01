@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Publications &amp; essays</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+
+  {{ $pages := .Pages }}
+  {{ if $pages }}
+  <ul class="entry-list">
+    {{ range $pages.Reverse }}
+    <li class="entry">
+      <div class="entry__meta">{{ .Params.year | default (.Date.Format "2006") }}</div>
+      <div>
+        {{ $title := .Title }}
+        <h2 class="entry__title">{{ with .Params.externalURL }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $title }}</a>{{ else }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</h2>
+        {{ with .Params.authors }}<p class="entry__summary">{{ delimit . ", " }}</p>{{ end }}
+        {{ with .Params.venue }}<p class="entry__summary"><em>{{ . }}</em></p>{{ end }}
+        {{ if or .Params.pdf .Params.doi .Params.code }}
+        <div class="entry__links">
+          {{ with .Params.pdf }}<a href="{{ . }}">pdf</a>{{ end }}
+          {{ with .Params.doi }}<a href="{{ . }}">doi</a>{{ end }}
+          {{ with .Params.code }}<a href="{{ . }}">code</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="empty">No writing published yet — check back soon.</p>
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">Selected work</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+
+  {{ $pages := .Pages.ByParam "year" }}
+  {{ if eq (len $pages) 0 }}{{ $pages = .Pages }}{{ end }}
+  {{ if $pages }}
+  <ul class="entry-list">
+    {{ range $pages.Reverse }}
+    <li class="entry">
+      <div class="entry__meta">{{ .Params.year | default (.Date.Format "2006") }}</div>
+      <div>
+        <h2 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="entry__summary">{{ .Params.summary | default .Summary }}</p>
+        {{ with .Params.tags }}
+        <div class="entry__tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+        {{ end }}
+        {{ if or .Params.github .Params.demo .Params.paper }}
+        <div class="entry__links">
+          {{ with .Params.github }}<a href="{{ . }}">code</a>{{ end }}
+          {{ with .Params.demo }}<a href="{{ . }}">demo</a>{{ end }}
+          {{ with .Params.paper }}<a href="{{ . }}">paper</a>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  <p class="empty">No projects published yet — check back soon.</p>
+  {{ end }}
+</div>
+{{ end }}

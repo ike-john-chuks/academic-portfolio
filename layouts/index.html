@@ -1,0 +1,96 @@
+{{ define "main" }}
+<div class="container">
+  <section class="hero">
+    <h1 class="sr-only">{{ .Site.Params.author }}</h1>
+    <p class="eyebrow hero__eyebrow">{{ .Site.Params.title }}</p>
+
+    <div class="hero__intro">
+      {{ with .Params.photo }}
+      <img class="hero__photo" src="{{ . | relURL }}" alt="Photo of {{ $.Site.Params.author }}">
+      {{ end }}
+      <div class="hero__intro-text">
+        {{ .Content }}
+      </div>
+    </div>
+
+    <div class="hero__links">
+      {{ with .Site.Params.email }}<a href="mailto:{{ . }}">Email →</a>{{ end }}
+      {{ with .Site.Params.googleScholar }}<a href="{{ . }}">Scholar →</a>{{ end }}
+      {{ with .Site.Params.x }}<a href="{{ . }}">X →</a>{{ end }}
+      {{ with .Site.Params.github }}<a href="{{ . }}">GitHub →</a>{{ end }}
+      {{ with .Site.Params.linkedin }}<a href="{{ . }}">LinkedIn →</a>{{ end }}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__head">
+      <h2>Selected publications</h2>
+      <a class="section__more" href="{{ "/publications" | relURL }}">All publications →</a>
+    </div>
+    <ul class="entry-list">
+      <li class="entry">
+        <div class="entry__meta">2025</div>
+        <div>
+          <h3 class="entry__title"><a href="https://ciit.finki.ukim.mk/proceedings/ciit-2025-proceedings.pdf">Ciphertext-Only Attacks Using Large Language Models</a></h3>
+          <p class="entry__summary">M. Taneska, I. J. Chukwu. <em>22nd International Conference on Informatics and Information Technologies (CiiT 2025)</em>, 240–244.</p>
+          <div class="entry__links"><a href="https://ciit.finki.ukim.mk/proceedings/ciit-2025-proceedings.pdf">PDF →</a></div>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry__meta">2025</div>
+        <div>
+          <h3 class="entry__title"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=k0j7qG4AAAAJ&amp;citation_for_view=k0j7qG4AAAAJ:qjMakFHDy7sC">Detecting Obfuscated Malware Infections on Windows Using Ensemble Learning Techniques</a></h3>
+          <p class="entry__summary">Y. Imamverdiyev, E. Baghirov, J. C. Ikechukwu. <em>Информатика и автоматизация</em>, 24(1), 99–124.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  {{ $writing := where .Site.RegularPages "Section" "writing" }}
+  {{ with first 3 $writing }}
+  <section class="section">
+    <div class="section__head">
+      <h2>Recent writing</h2>
+      <a class="section__more" href="{{ "/writing" | relURL }}">All writing →</a>
+    </div>
+    <ul class="entry-list">
+      {{ range . }}
+      <li class="entry">
+        <div class="entry__meta">{{ .Params.year | default (.Date.Format "2006") }}</div>
+        <div>
+          {{ $title := .Title }}
+          <h3 class="entry__title">{{ with .Params.externalURL }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $title }}</a>{{ else }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</h3>
+          {{ with .Params.venue }}<p class="entry__summary">{{ . }}</p>{{ end }}
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  {{ $projects := where .Site.RegularPages "Section" "projects" }}
+  {{ $projects := $projects.ByParam "date" | default $projects }}
+  {{ with first 3 $projects }}
+  <section class="section">
+    <div class="section__head">
+      <h2>Selected projects</h2>
+      <a class="section__more" href="{{ "/projects" | relURL }}">All projects →</a>
+    </div>
+    <ul class="entry-list">
+      {{ range . }}
+      <li class="entry">
+        <div class="entry__meta">{{ if .Params.year }}{{ .Params.year }}{{ else }}{{ .Date.Format "2006" }}{{ end }}</div>
+        <div>
+          <h3 class="entry__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="entry__summary">{{ .Params.summary | default .Summary }}</p>
+          {{ with .Params.tags }}
+          <div class="entry__tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+          {{ end }}
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</div>
+{{ end }}

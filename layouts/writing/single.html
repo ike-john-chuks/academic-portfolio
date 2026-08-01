@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">{{ .Params.type | default "Publication" }} &middot; {{ .Params.year | default (.Date.Format "2006") }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.authors }}<p class="hero__role">{{ delimit . ", " }}</p>{{ end }}
+    {{ with .Params.venue }}<p class="hero__role"><em>{{ . }}</em></p>{{ end }}
+  </header>
+
+  {{ if or .Params.pdf .Params.doi .Params.code }}
+  <div class="container" style="padding-left:0;padding-right:0;margin-bottom:1.5rem;">
+    <div class="entry__links">
+      {{ with .Params.pdf }}<a href="{{ . }}">PDF →</a>{{ end }}
+      {{ with .Params.doi }}<a href="{{ . }}">DOI →</a>{{ end }}
+      {{ with .Params.code }}<a href="{{ . }}">Code →</a>{{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ with .Params.abstract }}
+  <div class="container" style="padding-left:0;padding-right:0;">
+    <div class="abstract">
+      <p class="eyebrow">Abstract</p>
+      <p>{{ . }}</p>
+    </div>
+  </div>
+  {{ end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,75 @@
+baseURL = "https://ikechukwujohnchukwu.github.io/academic-portfolio/"
+languageCode = "en-us"
+title = "Ikechukwu John"
+theme = ""
+enableRobotsTXT = true
+summarylength = 40
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  author = "Ikechukwu John Chukwu"
+  role = "Researcher (AI, ML, DL, LLM, Applied Cryptography, Computer Security, Cyber Security)"
+  institution = "Currently living in Skopje, North Macedonia"
+  tagline = "Studying how to secure AI systems against known, and unknown attacks."
+  email = "ikechukwujohnchukwu@gmail.com"
+  github = "https://github.com/ike-john-chuks"
+  linkedin = "https://www.linkedin.com/in/ikechukwu-john-chukwu-94b184156/"
+  googleScholar = "https://scholar.google.com/citations?user=k0j7qG4AAAAJ&hl=en"
+  x = "https://x.com/cikechukwujohn"
+  orcid = ""
+  cvFile = "files/cv.pdf"
+  title = "Aspiring Research Applicant"
+
+[menu]
+
+  [[menu.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+
+  [[menu.main]]
+    name = "Publications"
+    pageRef = "/publications"
+    weight = 20
+
+  [[menu.main]]
+    name = "Projects"
+    pageRef = "/projects"
+    weight = 30
+
+  [[menu.main]]
+    name = "Writing"
+    pageRef = "/writing"
+    weight = 40
+
+  [[menu.main]]
+    name = "Events"
+    pageRef = "/events"
+    weight = 45
+
+  [[menu.main]]
+    name = "CV"
+    pageRef = "/cv"
+    weight = 50
+
+  # Teaching — add back when ready:
+  # [[menu.main]]
+  #   name = "Teaching"
+  #   pageRef = "/teaching"
+  #   weight = 60
+
+  [[menu.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 70
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ["HTML", "RSS"]

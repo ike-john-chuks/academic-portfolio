@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="container">
+  <header class="page-head">
+    <p class="eyebrow">{{ .Params.date_display | default (.Date.Format "January 2006") }}{{ with .Params.location }} &middot; {{ . }}{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+  </header>
+
+  {{ with .Params.description }}
+  <div class="container" style="padding-left:0;padding-right:0;">
+    <p class="hero__role" style="font-size:1rem;color:var(--ink);">{{ . }}</p>
+  </div>
+  {{ end }}
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}
