@@ -1,7 +1,6 @@
 baseURL = "https://ikechukwujohnchukwu.github.io/academic-portfolio/"
 languageCode = "en-us"
 title = "Ikechukwu John"
-theme = ""
 enableRobotsTXT = true
 summarylength = 40
 disableKinds = ["taxonomy", "term"]
@@ -16,7 +15,6 @@ disableKinds = ["taxonomy", "term"]
   linkedin = "https://www.linkedin.com/in/ikechukwu-john-chukwu-94b184156/"
   googleScholar = "https://scholar.google.com/citations?user=k0j7qG4AAAAJ&hl=en"
   x = "https://x.com/cikechukwujohn"
-  orcid = ""
   cvFile = "files/cv.pdf"
   title = "Aspiring Research Applicant"
 
